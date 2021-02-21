@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row justify-content-center"><h5 class="mt-4">Sentiment Analysing  for Scraped data from <a href="https://edition.cnn.com"> CNN </a>  website</h5></div>
+  <hr>
+  <div class="row justify-content-center">
+    <button class="btn btn-secondary"(click)="onAnalyse()">
+      <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+      Full Sentiment Analysis Process
+    </button>
+  </div>
+  <hr>
+  <div class="row">
+    <h5>Feature Extraction</h5>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col" >#</th>
+        <th scope="col" >title</th>
+        <th scope="col">avg_word</th>
+        <th scope="col">char_count</th>
+        <th scope="col">numerics</th>
+        <th scope="col">stop_words</th>
+        <th scope="col">upper</th>
+        <th scope="col">word_count</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="featureExtraction">
+      <tr *ngFor="let feature of featureExtraction; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td >{{feature.title}}</td>
+        <td >{{feature.avg_word}}</td>
+        <td >{{feature.char_count}}</td>
+        <td >{{feature.numerics}}</td>
+        <td >{{feature.stopwords}}</td>
+        <td >{{feature.upper}}</td>
+        <td >{{feature.word_count}}</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <hr>
+  <div class="row">
+    <h5>Sentiment Analysis</h5>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col" >#</th>
+        <th scope="col" >title</th>
+        <th scope="col">sentiment</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="featureExtraction">
+      <tr *ngFor="let data of sentimentAnalysisData; let i = index;"[ngClass]="{'table-success':data.sentiment > 0,'table-danger':data.sentiment < 0,'table-secondary':data.sentiment == 0}">
+        <th scope="row">{{i+1}}</th>
+        <td >{{data.title}}</td>
+        <td >{{data.sentiment}}</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+
+
+</div>

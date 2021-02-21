@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-center"><h5 class="mt-4">Scraping data from <a href="https://edition.cnn.com"> CNN </a>  website</h5></div>
+  <hr>
+  <div class="row justify-content-center">
+    <button class="btn btn-secondary"(click)="onScrape()">
+      <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+      Scrape Data
+    </button>
+  </div>
+  <hr>
+
+
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col" >#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Article</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="articles">
+      <tr *ngFor="let article of articles; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td >{{article.title}}</td>
+        <td >{{article.author}}</td>
+        <td >{{article.body.split('. ', 1)[0] + " ..."}}</td>
+      </tr>
+      </tbody>
+
+    </table>
+
+
+  </div>
+</div>
